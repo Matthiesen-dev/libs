@@ -1,0 +1,22 @@
+[versions]
+# Kotlin
+kotlin = "2.2.20"
+
+# Plugins
+idea-ext = "1.1.7"
+publish = "0.35.0"
+shadow = "9.4.1"
+
+[plugins]
+shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }
+
+[libraries]
+# General Buildscript Plugins
+kotlin-gradle = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+ideaExt = { group = "org.jetbrains.gradle.plugin.idea-ext", name = "org.jetbrains.gradle.plugin.idea-ext.gradle.plugin", version.ref = "idea-ext"}
+publish = { group = "com.vanniktech", name = "gradle-maven-publish-plugin", version.ref = "publish" }
+shadow = { group = "com.gradleup.shadow", name = "shadow-gradle-plugin", version.ref = "shadow" }
+
+# Development Libraries
+#faststatsConfig = { group = "dev.faststats.metrics", name = "config", version.ref = "faststats_version" }
+#faststatsCore = { group = "dev.faststats.metrics", name = "core", version.ref = "faststats_version" }
