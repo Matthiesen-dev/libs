@@ -2,6 +2,7 @@ import com.vanniktech.maven.publish.MavenPublishBaseExtension
 import org.gradle.api.Project
 import org.gradle.api.credentials.PasswordCredentials
 import org.gradle.api.publish.PublishingExtension
+import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.authentication.http.BasicAuthentication
 import org.gradle.kotlin.dsl.configure
 
@@ -69,6 +70,22 @@ afterEvaluate {
                 url.set(project.property("github_url").toString())
                 connection.set("scm:git:git://${project.property("git_url").toString()}")
                 developerConnection.set("scm:git:ssh://git@${project.property("git_url").toString()}")
+            }
+        }
+    }
+
+    pluginManager.withPlugin("com.gradleup.shadow") {
+        configure<PublishingExtension> {
+            publications.create("shadow", MavenPublication::class.java) {
+                from(components.getByName("shadow"))
+                artifact(tasks.named("sourcesJar"))
+                artifact(tasks.named("plainJavadocJar"))
+            }
+        }
+
+        tasks.configureEach {
+            if (name.contains("MavenPublication") && !name.contains("ShadowPublication")) {
+                enabled = false
             }
         }
     }

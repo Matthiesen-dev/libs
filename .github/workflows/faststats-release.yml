@@ -29,8 +29,8 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
 
-      - name: Shadow and Publish to DevMatthiesenMavenRepository
-        run: ./gradlew :faststats:shadowJar :faststats:publishAllPublicationsToDevMatthiesenMavenRepository
+      - name: Publish to DevMatthiesenMavenRepository
+        run: ./gradlew :faststats:publishAllPublicationsToDevMatthiesenMavenRepository
         env:
           FASTSTATS_VERSION: ${{ github.event.inputs.version }}
           ORG_GRADLE_PROJECT_devMatthiesenMavenUsername: ${{ secrets.ORG_GRADLE_PROJECT_DEVMATTHIESENMAVENUSERNAME }}
