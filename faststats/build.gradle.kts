@@ -1,6 +1,7 @@
 plugins {
     id("com.gradleup.shadow")
     id("matthiesen.shadow-platform-conventions")
+    id("matthiesen.publishing-conventions")
 }
 
 version = providers.environmentVariable("FASTSTATS_VERSION")
