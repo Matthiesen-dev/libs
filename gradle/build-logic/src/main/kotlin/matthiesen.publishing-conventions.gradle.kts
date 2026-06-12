@@ -75,11 +75,45 @@ afterEvaluate {
     }
 
     pluginManager.withPlugin("com.gradleup.shadow") {
+        val groupId = project.group.toString()
+        val artifactId = project.name
+        val version = project.version.toString()
+
         configure<PublishingExtension> {
             publications.create("shadow", MavenPublication::class.java) {
                 from(components.getByName("shadow"))
                 artifact(tasks.named("sourcesJar"))
                 artifact(tasks.named("plainJavadocJar"))
+
+                this.groupId = groupId
+                this.artifactId = artifactId
+                this.version = version
+
+                pom {
+                    name.set(project.name)
+                    description.set(project.property("description").toString())
+                    inceptionYear.set("2026")
+                    url.set(project.property("github_url").toString())
+                    licenses {
+                        license {
+                            name.set(project.property("license").toString())
+                            url.set(project.property("license_url").toString())
+                            distribution.set(project.property("license_url").toString())
+                        }
+                    }
+                    developers {
+                        developer {
+                            id.set(project.property("author_id").toString())
+                            name.set(project.property("author").toString())
+                            url.set(project.property("author_url").toString())
+                        }
+                    }
+                    scm {
+                        url.set(project.property("github_url").toString())
+                        connection.set("scm:git:git://${project.property("git_url").toString()}")
+                        developerConnection.set("scm:git:ssh://git@${project.property("git_url").toString()}")
+                    }
+                }
             }
         }
 
