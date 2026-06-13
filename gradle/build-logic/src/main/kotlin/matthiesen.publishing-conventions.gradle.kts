@@ -12,11 +12,10 @@ plugins {
 
 // Seed an initial version when the project has not set one yet.
 if (project.version.toString() == Project.DEFAULT_VERSION) {
-    val moduleVersionKey = "${project.name.replace('-', '_')}_version"
+    val moduleVersionKey = "version"
     val moduleVersionEnvKey = moduleVersionKey.uppercase()
     val resolvedVersion = providers.gradleProperty(moduleVersionKey)
         .orElse(providers.environmentVariable(moduleVersionEnvKey))
-        .orElse(providers.gradleProperty("version"))
         .orElse(providers.environmentVariable("PROJECT_VERSION"))
 
     resolvedVersion.orNull?.let { project.version = it }

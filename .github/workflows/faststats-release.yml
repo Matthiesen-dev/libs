@@ -32,6 +32,6 @@ jobs:
       - name: Publish to DevMatthiesenMavenRepository
         run: ./gradlew :faststats:publishAllPublicationsToDevMatthiesenMavenRepository
         env:
-          FASTSTATS_VERSION: ${{ github.event.inputs.version }}
+          VERSION: ${{ github.event.inputs.version }}
           ORG_GRADLE_PROJECT_devMatthiesenMavenUsername: ${{ secrets.ORG_GRADLE_PROJECT_DEVMATTHIESENMAVENUSERNAME }}
           ORG_GRADLE_PROJECT_devMatthiesenMavenPassword: ${{ secrets.ORG_GRADLE_PROJECT_DEVMATTHIESENMAVENPASSWORD }}

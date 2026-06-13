@@ -11,6 +11,7 @@ plugins {
 }
 
 group = property("maven_group").toString()
+version = property("version").toString()
 
 repositories {
     mavenCentral  {

@@ -1,7 +1,6 @@
 import com.github.jengelman.gradle.plugins.shadow.ShadowExtension
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.gradle.jvm.tasks.Jar
-import org.gradle.kotlin.dsl.configure
 
 plugins {
     id("matthiesen.project-conventions")

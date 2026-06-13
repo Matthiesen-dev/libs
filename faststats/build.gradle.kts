@@ -4,9 +4,6 @@ plugins {
     id("matthiesen.publishing-conventions")
 }
 
-version = providers.environmentVariable("FASTSTATS_VERSION")
-    .orElse(project.property("faststats_version").toString()).get()
-
 val shadowBundle: Configuration by configurations.creating
 
 dependencies {
