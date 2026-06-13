@@ -9,29 +9,10 @@ on:
             default: '0.26.0'
 
 jobs:
-  publish:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          fetch-tags: true
-
-      - name: Setup JDK 21
-        uses: actions/setup-java@v4
-        with:
-          java-version: "21"
-          distribution: "temurin"
-
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
-
-      - name: Publish to DevMatthiesenMavenRepository
-        run: ./gradlew :faststats:publishAllPublicationsToDevMatthiesenMavenRepository
-        env:
-          VERSION: ${{ github.event.inputs.version }}
-          ORG_GRADLE_PROJECT_devMatthiesenMavenUsername: ${{ secrets.ORG_GRADLE_PROJECT_DEVMATTHIESENMAVENUSERNAME }}
-          ORG_GRADLE_PROJECT_devMatthiesenMavenPassword: ${{ secrets.ORG_GRADLE_PROJECT_DEVMATTHIESENMAVENPASSWORD }}
+  run:
+    uses: matthiesen-dev/automation/.github/workflows/libs-gradle-task.yml@main
+    with:
+      project_name: "faststats"
+      version: ${{ github.event.inputs.version }}
+      maven_username: ${{ secrets.ORG_GRADLE_PROJECT_DEVMATTHIESENMAVENUSERNAME }}
+      maven_password: ${{ secrets.ORG_GRADLE_PROJECT_DEVMATTHIESNMAVENPASSWORD }}
