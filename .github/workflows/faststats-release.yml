@@ -16,4 +16,4 @@ jobs:
       version: ${{ github.event.inputs.version }}
     secrets:
       maven_username: ${{ secrets.ORG_GRADLE_PROJECT_DEVMATTHIESENMAVENUSERNAME }}
-      maven_password: ${{ secrets.ORG_GRADLE_PROJECT_DEVMATTHIESNMAVENPASSWORD }}
+      maven_password: ${{ secrets.ORG_GRADLE_PROJECT_DEVMATTHIESENMAVENPASSWORD }}
