@@ -11,7 +11,8 @@ plugins {
 }
 
 group = property("maven_group").toString()
-version = property("version").toString()
+version = providers.environmentVariable("VERSION")
+    .orElse(project.property("version").toString()).get()
 
 repositories {
     mavenCentral  {
